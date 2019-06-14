@@ -1,0 +1,18 @@
+def collatz(number):
+    if number % 2 == 0:
+        print(str(number/2))
+        return number/2
+    elif number == 1:
+        print('All Done!')
+    else:
+        print(str(number*3+1))
+        return number*3+1  
+            
+
+      
+print("Let's play a game. What number should we start with?")
+number = abs(int(input()))
+result = collatz(number)
+while result != 1:
+    result = collatz(result)
+    
