@@ -27,7 +27,7 @@ def getAnswer(answerNumber):
 ##        return 'Very doubtful'
 
 
-print(getAnswer(random.randint(0,8)))
+print(getAnswer(random.randint(0,len(list) - 1))
 # This lines below were combine to the above line
 ##r = random.randint(1,9)
 ##fortune = getAnswer(r)
