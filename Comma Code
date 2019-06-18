@@ -1,0 +1,16 @@
+def eggs(apple):
+    orange = apple[-1]
+    apple.remove(apple[-1])
+    bacon = ", "
+    bacon = bacon.join(apple)
+    bacon = (bacon + ', and ' + orange)
+    print(bacon)
+        
+
+
+
+    
+
+spam = input('What is the list? Seperate each item with a comma.')
+spam = list(spam.split(","))
+eggs(spam)
