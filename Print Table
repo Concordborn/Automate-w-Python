@@ -1,25 +1,31 @@
 ## Program takes a list of strings and displays it in a well-organized
 ## table with each column right-justified.
 
-def printTable():
-    for i in range(len(tableData)):
-       spam[i] = ' '.join(tableData[i])
-    for i in range(len(tableData)):
-        colWidths[i] = colWidths[i] + len(spam[i])    
-    for i in range(len(spam)):
-         print(spam[i].rjust(max(colWidths)))
-       
+
+def print_table(input_list):
+    num_of_lists = len(input_list)
+    items_in_lists = len(input_list[0])
+    max_length_list = []
+
+   
+    for list in input_list:
+        max_length_item = 0
+        for item in list:
+            if len(item) > max_length_item:
+                max_length_item = len(item)
+        max_length_list.append(max_length_item)
+    print(max_length_list)
+
+   
+    for row in range(items_in_lists):
+        for col in range(num_of_lists):
+            print(input_list[col][row].rjust(max_length_list[col]), end=' ')
+        print('')
 
 
-tableData = [['apples', 'oranges', 'cherries', 'banana'],
-             ['Alice', 'Bob', 'Carol', 'David'],
-             ['dogs', 'cats', 'moose', 'goose']]
 
-colWidths = [0] * len(tableData) # Defines global variable colWidths to be a list
-                                 # with as many elements as tableData. Can use this
-                                 # to hold the total length of all strings in
-                                 # each list inside the list(tableData)
-spam = [0] * len(tableData)      # This list will store the new strings, which will be
-                                 # the join lists from tableData.
-printTable()
+table_data = [['apples', 'oranges', 'cherries', 'banana'],
+              ['Alice', 'Bob', 'Carol', 'David'],
+              ['dogs', 'cats', 'moose', 'goose']]
 
+print_table(table_data)
