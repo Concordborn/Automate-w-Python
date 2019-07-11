@@ -1,0 +1,19 @@
+#! python3
+
+# Copypdf - this program walks through a folder tree and copies
+# all files which have the '.pdf' extension to a new folder.
+
+import shutil, os
+
+def Copypdf(folder):
+    folder = os.path.abspath(folder)
+    os.chdir(folder)
+    for foldername, subfolders, filenames in os.walk(folder):
+        print('Copying files in %s...' % (foldername))
+        for filename in filenames:
+            filename = os.path.abspath(filename)
+            if filename.endswith('.pdf'):
+                shutil.copy(filename, 'c:\\delicious\pdfs')
+
+Copypdf('c:\\delicious')
+            
