@@ -1,0 +1,25 @@
+import random
+
+guess = ' '
+coin = ' ' 
+while guess.lower() not in ('heads', 'tails'): 
+    print('Guess the coin toss! Enter heads or tails: ')
+    guess = input()
+toss = random.randint(0,1) # 0 is tails, 1 is heads
+if toss == 0:
+    coin = 'tails'
+if toss == 1:
+    coin = 'heads'
+if coin == guess.lower():
+    print('You got it!')
+else:
+    print('Nope! Guess again!')
+    guess = input()
+    if coin == guess.lower():
+        print('You got it!')
+    else:
+        print('Nope. You are really bad at this game.')
+
+# To the code I added the case insensitive checks as well as the 'coin' variable
+# to convert the random int into heads/tails. I checked these using IDLE's debugger
+# and didn't add logging statements. 
