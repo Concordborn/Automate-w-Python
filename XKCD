@@ -1,6 +1,10 @@
 #! python3
 # downloadXKCD.py - Downloads every single XKCD comic.
 
+## This code is a bit incomplete, it will run and download the first for a bit
+## but the exception clause does not match what is currently thrown by bs4
+## and thust needs updated.
+
 import requests, os, bs4
 
 url = 'http://xkcd.com' # starting url
