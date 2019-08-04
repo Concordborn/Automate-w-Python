@@ -1,0 +1,80 @@
+#! python3
+# multiplyTable.py takes a number(N) from the command line and returns an
+# excel spreadsheet with an NxN multiplication table. Every time this program
+# is called it will write to the same excel file. If the program is called with
+# an N that has been already used, the program will open the file, make the relevant
+# sheet the active sheet, save the file and close it.
+# If that N has never been used previously then the program will create the NxN table in
+# a new sheet, save and close the file. At the end of the program it will launch Excel
+# and open the file.
+
+import openpyxl, sys, os
+from openpyxl.styles import Font
+
+sys.argv # ['.\multiplyTable.py', N]
+
+N = sys.argv[1] #string value of N
+Nnum = int(sys.argv[1]) #integer value of N
+
+
+# Open multiplyTable excel workbook.
+
+workbook = openpyxl.load_workbook(r'c:\users\coding\python\scripts\automate\multiplyTable.xlsx')
+
+#Create Bold Font to be appplied.
+
+BoldFont = Font(bold = True)
+
+#Create a list of values from 1 to N
+
+values = list(range(1, Nnum+1)) # values = [1, 2, 3, ..., N]
+
+# Get all sheetnames in workbook. 
+
+sheetnames = workbook.sheetnames
+
+# If N is already a sheet then make that sheet
+# the active sheet, save and close workbook.
+
+if N in sheetnames:
+    sheetindex = workbook.sheetnames.index(N)
+    workbook.active = sheetindex
+    
+
+# If N is not already a sheet then create that sheet, title it "N"
+# and populate the table.
+
+if N not in sheetnames:
+    sheet = workbook.create_sheet(N, 0)
+    workbook.active = 0 #Make this sheet the active sheet, since we placed it at index 0 when we made it.
+
+    #ToDo: Enter values for cells in row 1 and Column A as appropriate. Bold these cells.
+
+    #sheet['A'].font = BoldFont
+    #sheet['1'].font = BoldFont
+    
+    #ToDo: Loop over all the cells multiplying by the appropriate values
+    
+    for item in values:
+        sheet.cell(row=1, column=item+1, value='N = ' + str(item))
+        sheet.cell(row=1, column=item+1).font = BoldFont
+        sheet.cell(row=item+1, column=1, value='N = ' + str(item))
+        sheet.cell(row=item+1, column=1).font = BoldFont
+        
+# sheet.cell(row = 2, column = item+1, value=item) #The first row multiplies by 1
+# sheet.cell(row = item+1, column=2, value=item) #The first column multiples by 1
+# The above rows were originally in the for loop but then I realized that they weren't needed.
+
+        for j in values:
+            sheet.cell(row=item+1, column=j+1, value = item*j) # This writes the table
+        
+
+    #Save and close workbook.
+    workbook.save('multiplyTable.xlsx')
+workbook.close()
+
+
+
+# ToDo : Launch excel and open file with relevant sheet active.
+
+os.system('start excel.exe multiplyTable.xlsx')
