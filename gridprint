@@ -1,0 +1,18 @@
+grid = [['.', '.', '.', '.', '.', '.'], 
+        ['.', 'O', 'O', '.', '.', '.'],
+        ['O', 'O', 'O', 'O', '.', '.'],
+        ['O', 'O', 'O', 'O', 'O', '.'],
+        ['.', 'O', 'O', 'O', 'O', 'O'],
+        ['O', 'O', 'O', 'O', 'O', '.'],
+        ['O', 'O', 'O', 'O', '.', '.'],
+        ['.', 'O', 'O', '.', '.', '.'],
+        ['.', '.', '.', '.', '.', '.']]
+    
+def pictureprint(picture):
+    for i in range(0, 6):
+        for j in range(len(picture)):
+            print(picture[j][i], end='')
+        print('\n')
+    
+pictureprint(grid)
+        
