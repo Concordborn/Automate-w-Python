@@ -1,0 +1,30 @@
+#Coin Flip Streaks
+# Count the number of times that you get a streak of 6 heads or tails in a row
+# when flipping a random coin.
+import random
+print('How many times would you like the flip the coin?')
+runTime = int(input())
+
+def coinFlip(flips):
+    emptyList = [] # The list that will be appended to record coin flip results
+    numstreaks = 0 # Counter for how many streaks of 6 there are
+    streak = 0     # Counter for how many similar consecutive results there are
+    for i in range(0, flips):
+        result = random.randint(0,1) # Coin flip
+        if result == 0:
+            emptyList.append('T') # 0 is tails
+        else:
+            emptyList.append('H') # 1 is heads
+    for i in range(len(emptyList)-1):
+        if emptyList[i] == emptyList[i + 1]: #Does the item match the item next to it? If so add one to streak
+            streak += 1
+            if streak >= 5: # If your streak is five then you have six similar items in a row! Add one to numstreaks
+                numstreaks += 1
+        else:
+            streak = 0  # Reset the consecutive result counter if the two adjacent items are not a match.
+
+    #print(str(emptyList)) # Can uncomment if you want to check a small test
+    print('After ' + str(flips) + ' there were ' + str(numstreaks) + ' strings of 6 consecutive heads or tails.')
+    print('Chance of streak: %s%%' % ((numstreaks/runTime)*100))
+
+coinFlip(runTime)
