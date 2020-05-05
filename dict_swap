@@ -1,0 +1,14 @@
+# Program to create a new dictionary which has swapped keys/values
+
+myCat = {'size':'fat', 'color':'gray', 'disposition':'loud'}
+
+def dictswap(entry):
+    swapped = {} 
+    for key in entry:
+        swapped[entry[key]] = key
+    return swapped
+
+newdict = dictswap(myCat)
+
+print(myCat)
+print(newdict)
