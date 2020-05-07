@@ -1,0 +1,49 @@
+# Program to detect if a dictionary has a valid chess board position
+# in the form of {'1h': 'bking', '6c': 'wqueen', '2g': 'bbishop', '5h': 'bqueen', '3e': 'wking'}
+
+def validBoard(board):
+    count = {'Wpawn':0, 'Wrook':0, 'Wknight':0, 'Wbishop':0, 'Wqueen':0, 'Wking':0,
+             'Bpawn':0, 'Brook':0, 'Bknight':0, 'Bbishop':0, 'Bqueen':0, 'Bking':0, 'Wcount': 0, 'Bcount':0} #empty dictionary to count # of pieces
+    validCoords = ('1', '2', '3', '4', '5', '6', '7', '8', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
+    validator = 0
+    for item in list(board.values()): # Creates a dictionary counting the number of times each piece appears.
+        count[item] = count[item] + 1
+        if 'W' in item:
+            count['Wcount'] = count['Wcount'] + 1
+        elif 'B' in item:
+            count['Bcount'] = count['Bcount'] + 1
+    # first check that there are not more than 32 pieces on the board
+    for item in count:  # Loop which goes through each piece and makes sure there are not too many on the board
+        if item in ('Wpawn', 'Bpawn'):
+           if count[item] > 8:
+               print('There are too many ' + item + 's, invalid board')
+               validator += 1
+        elif item in ('Wking', 'Bking'):
+            if not(count[item] == 1):
+                print('Incorrect amount of ' + item+ 's, invalid board')
+                validator +=1
+        elif item in ('Wbishop', 'Bbishop', 'Wknight', 'Bknight', 'Wrook', 'Brook'):
+            if count[item] > 10:
+                print('You have too many ' + item + 's, invalid board')
+                validator += 1
+        elif item in ('Wqueen', 'Bqueen'):
+            if count[item] > 9:
+                print('You have too many ' + item + 's, invalid board.')
+                validator += 1
+        elif item in ('Wcount', 'Bcount'):
+            if count[item] > 16:
+                if 'W' in item:
+                    print('There are too many White pieces, invalid board')                
+                elif 'B' in item:
+                    print('There are too many Black pieces, invalid board')
+                validator += 1
+        
+    for key in board: # for loop to check the validity of the the board coordinates
+        check = list(key)
+        for entry in check:
+            if entry not in validCoords:
+                print(board[key] + ' assigned to invalid square ' + key)
+                validator += 1
+    if validator == 0:
+        print('Congratulations! This is a valid board')
+    
